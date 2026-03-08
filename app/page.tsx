@@ -18,6 +18,7 @@ import {
   Cake,
   Gift,
   Quote,
+  ChevronRight,
 } from "lucide-react";
 
 const menuCategories = [
@@ -180,35 +181,45 @@ const highlights = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white overflow-x-hidden font-sans">
-      {/* Ambient Background */}
+    <div className="min-h-screen bg-[#080707] text-white overflow-x-hidden font-sans">
+      {/* Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-[800px] bg-gradient-to-b from-[#0a0805] to-transparent"></div>
-        <div className="absolute top-[-30%] left-[-20%] w-[60%] h-[60%] bg-gradient-radial from-amber-900/20 via-amber-950/5 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-[-30%] right-[-20%] w-[60%] h-[60%] bg-gradient-radial from-yellow-900/15 via-amber-950/5 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#050505_70%)]"></div>
+        {/* Radial gradient orbs */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-[#1a1510] via-[#0d0a08] to-transparent opacity-60"></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-[#15120d] via-[#0d0a08] to-transparent opacity-60"></div>
+        
+        {/* Amber glow */}
+        <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-amber-600/10 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-[30%] right-[10%] w-[300px] h-[300px] bg-yellow-600/8 rounded-full blur-[120px]"></div>
+        
+        {/* Noise texture overlay */}
+        <div className="absolute inset-0 opacity-[0.015] bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAACAgIDAwMLCwsMDAwAAAAAAAALywoOAAAACHRSTlMAMwA3MzM3Mwb+7yYAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA0SURBVBjTY2RgYPjPgB0x4mJOQkpKfjJDKcmoKQ2QKSeHNMhJJ0kYJU2IJKWY0oQkI5OUYkq4gZx0koQB4gC6eAIAbKoMuwAAAABJRU5ErkJggg==')]"></div>
+        
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080707] via-transparent to-[#080707]"></div>
       </div>
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/95 to-transparent h-24"></div>
+        <div className="absolute inset-0 bg-[#080707]/80 backdrop-blur-xl border-b border-white/[0.03]"></div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <a href="#home" className="flex items-center gap-3 group">
               <div className="relative">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform duration-300">
-                  <Coffee className="w-6 h-6 text-black" />
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-110 transition-transform duration-500">
+                  <Coffee className="w-5 h-5 text-black" />
                 </div>
+                <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-500 opacity-0 group-hover:opacity-30 blur transition-all duration-500"></div>
               </div>
               <div>
-                <h1 className="font-bold text-xl tracking-tight">Perasa Kopi</h1>
-                <p className="text-[8px] text-amber-500/80 tracking-[0.3em] uppercase">Est. 2020</p>
+                <h1 className="font-bold text-lg tracking-wide">Perasa Kopi</h1>
+                <p className="text-[7px] text-amber-500/80 tracking-[0.35em] uppercase">Est. 2020</p>
               </div>
             </a>
 
             {/* Menu */}
-            <div className="hidden lg:flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-1">
               {[
                 { href: "#home", label: "Beranda" },
                 { href: "#about", label: "Tentang" },
@@ -218,9 +229,10 @@ export default function Home() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="px-5 py-2.5 text-sm font-medium text-zinc-400 hover:text-amber-400 transition-all duration-300 rounded-full hover:bg-white/5 relative"
+                  className="relative px-5 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-300"
                 >
                   {item.label}
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent transition-all duration-300 hover:w-full"></span>
                 </a>
               ))}
             </div>
@@ -230,101 +242,103 @@ export default function Home() {
               href="https://wa.me/6285366567799"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-amber-500 to-amber-600 text-black px-6 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:shadow-amber-500/30 hover:scale-105 transition-all duration-300"
+              className="relative group bg-gradient-to-r from-amber-500 to-amber-600 text-black px-6 py-2.5 rounded-full font-semibold text-sm overflow-hidden"
             >
-              Pesan Sekarang
+              <span className="relative z-10">Pesan Sekarang</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </a>
           </div>
         </div>
       </nav>
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section id="home" className="relative z-10 min-h-screen flex items-center justify-center px-6 pt-32 pb-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-3 bg-white/[0.03] border border-white/[0.08] px-5 py-2.5 rounded-full mb-12">
-            <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
-            <span className="text-amber-500/90 text-xs font-medium tracking-wide uppercase">Coffee Shop 24 Jam • Jember</span>
+          <div className="inline-flex items-center gap-3 bg-white/[0.03] border border-white/[0.06] px-5 py-2.5 rounded-full mb-12">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+            </span>
+            <span className="text-amber-500/90 text-xs font-medium tracking-widest uppercase">Coffee Shop 24 Jam • Jember</span>
           </div>
 
           {/* Title */}
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.95] tracking-tight">
-            <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 bg-clip-text text-transparent">
+          <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-bold mb-8 leading-[0.85] tracking-tight">
+            <span className="block bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 bg-clip-text text-transparent">
               Perasa
             </span>
-            <br />
-            <span className="text-zinc-100">Kopi</span>
+            <span className="block text-zinc-200">Kopi</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-zinc-400 text-lg md:text-xl max-w-xl mx-auto mb-8 leading-relaxed">
             Menghadirkan kopi arabica terbaik yang diseduh dengan keahlian dan cinta. Setiap cangkir adalah pengalaman yang tak terlupakan.
           </p>
           
-          <div className="flex items-center justify-center gap-2 text-amber-500/70 mb-16">
-            <Quote className="w-4 h-4 rotate-180" />
-            <span className="italic font-light text-sm">Setiap cangkir adalah cerita</span>
+          <div className="flex items-center justify-center gap-3 text-amber-500/60 mb-16">
             <Quote className="w-4 h-4" />
+            <span className="italic font-light text-sm">Setiap cangkir adalah cerita</span>
+            <Quote className="w-4 h-4 rotate-180" />
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-24">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-28">
             <a
               href="https://wa.me/6285366567799"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-amber-500 to-amber-600 text-black px-10 py-4 rounded-full font-semibold text-base hover:shadow-xl hover:shadow-amber-500/30 hover:scale-105 transition-all duration-300 flex items-center gap-3"
+              className="group relative bg-gradient-to-r from-amber-500 to-amber-600 text-black px-10 py-4 rounded-full font-semibold text-base overflow-hidden"
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              Pesan via WhatsApp
-              <ArrowRight className="w-5 h-5" />
+              <span className="relative z-10 flex items-center gap-3">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Pesan via WhatsApp
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </a>
             <a
               href="#menu"
-              className="border border-white/15 bg-white/[0.03] px-10 py-4 rounded-full font-semibold text-base hover:bg-white/[0.08] hover:border-white/25 transition-all duration-300 flex items-center gap-3"
+              className="group border border-white/10 bg-white/[0.02] px-10 py-4 rounded-full font-semibold text-base hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300 flex items-center gap-3"
             >
               Lihat Menu
+              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto">
+          <div className="grid grid-cols-3 gap-3 max-w-lg mx-auto">
             {[
-              { number: "24 Jam", label: "Buka Setiap Hari" },
+              { number: "24", label: "Jam Buka" },
               { number: "100%", label: "Arabica" },
-              { number: "50+", label: "Menu Pilihan" },
+              { number: "50+", label: "Menu" },
             ].map((stat, i) => (
-              <div key={i} className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 hover:bg-white/[0.06] hover:border-white/15 transition-all duration-300">
+              <div key={i} className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-4 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300">
                 <p className="text-3xl md:text-4xl font-bold text-amber-500">{stat.number}</p>
-                <p className="text-zinc-500 text-xs md:text-sm mt-1">{stat.label}</p>
+                <p className="text-zinc-500 text-xs mt-1">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Scroll */}
+        {/* Scroll indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-          <div className="w-6 h-10 border border-white/10 rounded-full flex justify-center pt-2 animate-bounce">
-            <div className="w-1 h-2 bg-amber-500/50 rounded-full"></div>
-          </div>
+          <div className="w-px h-16 bg-gradient-to-b from-amber-500/50 to-transparent mx-auto"></div>
         </div>
       </section>
 
-      {/* Highlights */}
-      <section className="relative z-10 py-20 px-6 border-y border-white/[0.05] bg-white/[0.02]">
+      {/* Features */}
+      <section className="relative z-10 py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {highlights.map((item, i) => (
-              <div key={i} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/[0.03] transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500/15 to-amber-600/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <item.icon className="w-6 h-6 text-amber-500" />
+              <div key={i} className="group bg-white/[0.02] border border-white/[0.04] rounded-2xl p-5 hover:bg-white/[0.04] hover:border-amber-500/20 transition-all duration-500">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/10 to-amber-600/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:from-amber-500/20 group-hover:to-amber-600/10 transition-all duration-500">
+                  <item.icon className="w-5 h-5 text-amber-500" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-zinc-100">{item.title}</h3>
-                  <p className="text-zinc-500 text-sm">{item.desc}</p>
-                </div>
+                <h3 className="font-semibold text-zinc-200 mb-1">{item.title}</h3>
+                <p className="text-zinc-500 text-sm">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -338,20 +352,21 @@ export default function Home() {
             {/* Visual */}
             <div className="relative">
               <div className="relative z-10">
-                <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-amber-500/8 to-transparent border border-white/[0.08] p-10 flex items-center justify-center">
+                <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-amber-500/5 to-transparent border border-white/[0.05] p-10 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-44 h-44 mx-auto mb-6 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-2xl shadow-amber-500/20">
-                      <Coffee className="w-24 h-24 text-black" />
+                    <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-2xl shadow-amber-500/20 relative">
+                      <Coffee className="w-20 h-20 text-black" />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
                     </div>
-                    <div className="w-28 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent mx-auto mb-4"></div>
-                    <p className="text-amber-500 font-medium text-lg">Premium Quality</p>
+                    <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent mx-auto mb-4"></div>
+                    <p className="text-amber-500 font-medium">Premium Quality</p>
                     <p className="text-zinc-500 text-sm mt-1">100% Arabica Coffee</p>
                   </div>
                 </div>
               </div>
-              <div className="absolute -top-6 -right-6 w-24 h-24 border border-amber-500/20 rounded-3xl"></div>
-              <div className="absolute -bottom-6 -left-6 w-28 h-28 bg-amber-500/10 rounded-full blur-3xl"></div>
-              <div className="absolute top-10 -right-2 bg-gradient-to-r from-amber-500 to-amber-600 text-black px-5 py-2.5 rounded-xl shadow-lg">
+              <div className="absolute -top-8 -right-8 w-28 h-28 border border-amber-500/10 rounded-3xl"></div>
+              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl"></div>
+              <div className="absolute top-12 -right-2 bg-gradient-to-r from-amber-500 to-amber-600 text-black px-5 py-2 rounded-xl shadow-lg">
                 <p className="font-bold text-sm flex items-center gap-2">
                   <Sparkles className="w-4 h-4" /> Since 2020
                 </p>
@@ -362,7 +377,7 @@ export default function Home() {
             <div>
               <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-4 py-1.5 rounded-full mb-6">
                 <Star className="w-4 h-4 text-amber-500" />
-                <span className="text-amber-500 text-xs font-medium uppercase tracking-wide">Tentang Kami</span>
+                <span className="text-amber-500 text-xs font-medium uppercase tracking-widest">Tentang Kami</span>
               </div>
               
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
@@ -381,19 +396,31 @@ export default function Home() {
               </p>
 
               <div className="flex gap-3">
-                <a href="https://www.instagram.com/perasakopi_" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-zinc-400 hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-all duration-300">
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a href="https://www.tiktok.com/@perasakopi_" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-zinc-400 hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-all duration-300">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                  </svg>
-                </a>
-                <a href="https://wa.me/6285366567799" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-zinc-400 hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-all duration-300">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
-                </a>
+                {[
+                  { icon: Instagram, href: "https://www.instagram.com/perasakopi_" },
+                  { icon: "tiktok", href: "https://www.tiktok.com/@perasakopi_" },
+                  { icon: "wa", href: "https://wa.me/6285366567799" },
+                ].map((social, i) => (
+                  <a
+                    key={i}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-center text-zinc-500 hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-all duration-300"
+                  >
+                    {social.icon === Instagram ? (
+                      <Instagram className="w-5 h-5" />
+                    ) : social.icon === "tiktok" ? (
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                      </svg>
+                    )}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -401,41 +428,41 @@ export default function Home() {
       </section>
 
       {/* Menu */}
-      <section id="menu" className="relative z-10 py-32 px-6 bg-white/[0.02]">
+      <section id="menu" className="relative z-10 py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-4 py-1.5 rounded-full mb-6">
               <Star className="w-4 h-4 text-amber-500" />
-              <span className="text-amber-500 text-xs font-medium uppercase tracking-wide">Menu Kami</span>
+              <span className="text-amber-500 text-xs font-medium uppercase tracking-widest">Menu Kami</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Pilihan <span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">Terbaik</span>
             </h2>
-            <p className="text-zinc-400 max-w-xl mx-auto">
+            <p className="text-zinc-400 max-w-lg mx-auto">
               Nikmati variety kopi premium dan makanan lezat yang disiapkan dengan bahan-bahan berkualitas
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
             {menuCategories.map((category, i) => (
               <div 
                 key={i} 
-                className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 hover:bg-white/[0.05] hover:border-amber-500/20 transition-all duration-500"
+                className="bg-white/[0.02] border border-white/[0.04] rounded-2xl p-5 hover:bg-white/[0.04] hover:border-amber-500/20 transition-all duration-500 group"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/15 to-amber-600/5 flex items-center justify-center">
-                    <category.icon className="w-5 h-5 text-amber-500" />
+                  <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500/10 to-amber-600/5 flex items-center justify-center">
+                    <category.icon className="w-4 h-4 text-amber-500" />
                   </div>
-                  <h3 className="font-semibold text-zinc-100">{category.title}</h3>
+                  <h3 className="font-semibold text-zinc-200">{category.title}</h3>
                 </div>
                 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {category.items.map((item, j) => (
                     <div 
                       key={j} 
-                      className="flex justify-between items-center py-1.5 border-b border-white/[0.04] last:border-0"
+                      className="flex justify-between items-center py-1.5 border-b border-white/[0.03] last:border-0 group-hover:border-white/[0.05] transition-colors"
                     >
-                      <span className="text-sm text-zinc-400">{item.name}</span>
+                      <span className="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">{item.name}</span>
                       <span className="text-sm font-medium text-amber-500">Rp {item.price}</span>
                     </div>
                   ))}
@@ -449,7 +476,7 @@ export default function Home() {
               href="https://wa.me/6285366567799"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-black px-10 py-4 rounded-full font-semibold hover:shadow-xl hover:shadow-amber-500/30 hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-black px-10 py-4 rounded-full font-semibold hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-300"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -467,39 +494,39 @@ export default function Home() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-4 py-1.5 rounded-full mb-6">
               <MapPin className="w-4 h-4 text-amber-500" />
-              <span className="text-amber-500 text-xs font-medium uppercase tracking-wide">Kunjungi Kami</span>
+              <span className="text-amber-500 text-xs font-medium uppercase tracking-widest">Kunjungi Kami</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Lokasi <span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">Kami</span>
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-4 mb-8">
-            <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.05] hover:border-amber-500/20 transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/15 to-amber-600/5 flex items-center justify-center mb-4">
-                <MapPin className="w-6 h-6 text-amber-500" />
+          <div className="grid md:grid-cols-3 gap-3 mb-8">
+            <div className="bg-white/[0.02] border border-white/[0.04] rounded-2xl p-6 hover:bg-white/[0.04] hover:border-amber-500/20 transition-all duration-300">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500/10 to-amber-600/5 flex items-center justify-center mb-4">
+                <MapPin className="w-5 h-5 text-amber-500" />
               </div>
-              <h3 className="font-semibold text-zinc-100 mb-2">Alamat</h3>
+              <h3 className="font-semibold text-zinc-200 mb-2">Alamat</h3>
               <p className="text-zinc-400 text-sm mb-3">Jl Sumatera 124, Sumbersari, Jember</p>
               <a href="https://maps.google.com/?q=Jl+Sumatera+124+Sumbersari+Jember" target="_blank" rel="noopener noreferrer" className="text-amber-500 text-sm hover:underline">
                 Buka di Maps →
               </a>
             </div>
 
-            <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.05] hover:border-amber-500/20 transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/15 to-purple-600/5 flex items-center justify-center mb-4">
-                <Clock className="w-6 h-6 text-purple-400" />
+            <div className="bg-white/[0.02] border border-white/[0.04] rounded-2xl p-6 hover:bg-white/[0.04] hover:border-amber-500/20 transition-all duration-300">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-600/5 flex items-center justify-center mb-4">
+                <Clock className="w-5 h-5 text-purple-400" />
               </div>
-              <h3 className="font-semibold text-zinc-100 mb-2">Jam Buka</h3>
+              <h3 className="font-semibold text-zinc-200 mb-2">Jam Buka</h3>
               <p className="text-zinc-400 text-sm mb-2">Setiap Hari</p>
               <p className="text-2xl font-bold text-amber-500">24 Jam</p>
             </div>
 
-            <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.05] hover:border-amber-500/20 transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/15 to-green-600/5 flex items-center justify-center mb-4">
-                <Phone className="w-6 h-6 text-green-400" />
+            <div className="bg-white/[0.02] border border-white/[0.04] rounded-2xl p-6 hover:bg-white/[0.04] hover:border-amber-500/20 transition-all duration-300">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-green-500/10 to-green-600/5 flex items-center justify-center mb-4">
+                <Phone className="w-5 h-5 text-green-400" />
               </div>
-              <h3 className="font-semibold text-zinc-100 mb-2">Reservasi</h3>
+              <h3 className="font-semibold text-zinc-200 mb-2">Reservasi</h3>
               <p className="text-zinc-400 text-sm mb-3">0822-2939-8107</p>
               <a href="tel:082229398107" className="text-amber-500 text-sm hover:underline">
                 Telepon →
@@ -507,7 +534,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="aspect-video rounded-2xl overflow-hidden bg-white/[0.02] border border-white/[0.06]">
+          <div className="aspect-video rounded-2xl overflow-hidden bg-white/[0.02] border border-white/[0.04]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.5!2d113.7!3d-8.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sJl.+Sumatera+124%2C+Sumbersari%2C+Jember!5e0!3m2!1sen!2sid!4v1600000000000!5m2!1sen!2sid"
               width="100%"
@@ -524,9 +551,9 @@ export default function Home() {
       <section className="relative z-10 py-24 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="relative bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-500 rounded-3xl p-12 md:p-16 overflow-hidden">
-            <div className="absolute inset-0 opacity-15">
-              <div className="absolute top-0 left-0 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full blur-3xl"></div>
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 right-0 w-80 h-80 bg-black rounded-full blur-3xl"></div>
             </div>
             <div className="relative z-10 text-center">
               <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
@@ -541,13 +568,13 @@ export default function Home() {
                   href="https://wa.me/6285366567799"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-black text-white px-8 py-4 rounded-full font-semibold hover:bg-zinc-900 transition-all duration-300 hover:scale-105"
+                  className="bg-black text-white px-8 py-4 rounded-full font-semibold hover:bg-zinc-900 transition-all duration-300"
                 >
                   WhatsApp
                 </a>
                 <a
                   href="tel:082229398107"
-                  className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-zinc-100 transition-all duration-300 hover:scale-105"
+                  className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-zinc-100 transition-all duration-300"
                 >
                   Telepon
                 </a>
@@ -558,7 +585,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 py-12 px-6 border-t border-white/[0.05]">
+      <footer className="relative z-10 py-12 px-6 border-t border-white/[0.03]">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center gap-3">
@@ -567,7 +594,7 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="font-semibold">Perasa Kopi</h3>
-                <p className="text-[8px] text-amber-500/80 tracking-[0.3em] uppercase">Est. 2020</p>
+                <p className="text-[7px] text-amber-500/80 tracking-[0.35em] uppercase">Est. 2020</p>
               </div>
             </div>
             
@@ -579,19 +606,31 @@ export default function Home() {
             </div>
 
             <div className="flex gap-3">
-              <a href="https://www.instagram.com/perasakopi_" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-zinc-500 hover:text-amber-500 hover:border-amber-500 transition-all">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="https://www.tiktok.com/@perasakopi_" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-zinc-500 hover:text-amber-500 hover:border-amber-500 transition-all">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                </svg>
-              </a>
-              <a href="https://wa.me/6285366567799" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-zinc-500 hover:text-amber-500 hover:border-amber-500 transition-all">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-              </a>
+              {[
+                { icon: Instagram, href: "https://www.instagram.com/perasakopi_" },
+                { icon: "tiktok", href: "https://www.tiktok.com/@perasakopi_" },
+                { icon: "wa", href: "https://wa.me/6285366567799" },
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-center text-zinc-500 hover:text-amber-500 hover:border-amber-500/50 transition-all duration-300"
+                >
+                  {social.icon === Instagram ? (
+                    <Instagram className="w-4 h-4" />
+                  ) : social.icon === "tiktok" ? (
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                    </svg>
+                  ) : (
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                  )}
+                </a>
+              ))}
             </div>
           </div>
           
