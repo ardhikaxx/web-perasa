@@ -16,37 +16,182 @@ import {
   Home as HomeIcon,
   Info,
   Utensils,
-  Navigation
+  Navigation,
+  GlassWater,
+  Leaf,
+  Drumstick,
+  Car,
+  Sandwich,
+  Cake,
+  Gift,
+  Plus
 } from "lucide-react";
 
-const menuItems = [
-  { name: "Espresso", price: "15.000", category: "coffee" },
-  { name: "Americano", price: "18.000", category: "coffee" },
-  { name: "Cappuccino", price: "22.000", category: "coffee" },
-  { name: "Latte", price: "22.000", category: "coffee" },
-  { name: "Mocha", price: "25.000", category: "coffee" },
-  { name: "Cold Brew", price: "25.000", category: "coffee" },
-  { name: "Kopi Susu", price: "20.000", category: "coffee" },
-  { name: "Kopi Jahe", price: "22.000", category: "coffee" },
-  { name: "Matcha Latte", price: "28.000", category: "coffee" },
-  { name: "Thai Tea", price: "20.000", category: "tea" },
-  { name: "Lemon Tea", price: "18.000", category: "tea" },
-  { name: "Chocolate", price: "20.000", category: "tea" },
-  { name: "Red Velvet", price: "25.000", category: "tea" },
-  { name: "Taro", price: "22.000", category: "tea" },
-];
-
-const foodItems = [
-  { name: "Roti Bakar", price: "15.000" },
-  { name: "Croissant", price: "18.000" },
-  { name: "Donut", price: "12.000" },
-  { name: "Pisang Goreng", price: "15.000" },
-  { name: "Kentang Goreng", price: "18.000" },
-  { name: "Nasi Goreng", price: "25.000" },
-  { name: "Mie Goreng", price: "22.000" },
-  { name: "Toast", price: "15.000" },
-  { name: "Chicken Wings", price: "28.000" },
-  { name: "Chicken Nugget", price: "22.000" },
+const menuCategories = [
+  {
+    title: "Coffee",
+    icon: Coffee,
+    items: [
+      { name: "Short Black", desc: "Double shot espresso full arabica", price: "10.000" },
+      { name: "Hot Americano", desc: "Double shot espresso arabika (panas)", price: "12.000" },
+      { name: "Ice Americano", desc: "Double shot espresso arabika (dingin)", price: "12.000" },
+      { name: "Ice Americano Peach", desc: "Espresso dengan rasa buah peach", price: "18.000" },
+      { name: "Ice Americano Lychee", desc: "Espresso dengan rasa buah leci", price: "18.000" },
+      { name: "Coffee Filter (V60/Japanese)", desc: "Kopi single origin arabika", price: "20.000" },
+    ]
+  },
+  {
+    title: "Latte & Cappuccino",
+    icon: Coffee,
+    items: [
+      { name: "Hot Cafe Latte", desc: "Espresso dengan fresh milk", price: "15.000" },
+      { name: "Ice Cafe Latte", desc: "Espresso dengan fresh milk (dingin)", price: "18.000" },
+      { name: "Hot Cappuccino", desc: "Espresso, susu, foam", price: "15.000" },
+      { name: "Ice Cappuccino", desc: "Espresso, susu segar, foam", price: "18.000" },
+      { name: "Ice Caramel Macchiato", desc: "Espresso, caramel syrup, fresh milk, caramel foam", price: "20.000" },
+    ]
+  },
+  {
+    title: "Kopi Susu (Signature)",
+    icon: Coffee,
+    items: [
+      { name: "Es Kopi Susu Pondasi", desc: "Kopi susu gula aren", price: "18.000" },
+      { name: "Es Kopi Susu Kelapa", desc: "Kopi susu gula aren + coconut milk", price: "20.000" },
+      { name: "Es Kopi Susu Pondasi Butterscotch", desc: "Kopi susu gula aren + sirup butterscotch", price: "20.000" },
+      { name: "Es Kopi Susu Baileys", desc: "Kopi susu gula aren + sirup irish cream", price: "20.000" },
+      { name: "Es Kopi Susu Pistachio", desc: "Kopi susu gula aren + sirup pistachio", price: "20.000" },
+    ]
+  },
+  {
+    title: "Specialty Coffee",
+    icon: Sparkles,
+    items: [
+      { name: "Butterscotch Seasalt Latte", desc: "Kopi susu butterscotch dengan foam seasalt", price: "22.000" },
+      { name: "Seasalt Cocoa", desc: "Kopi susu moccachino dengan foam seasalt", price: "22.000" },
+      { name: "Coffee Beer", desc: "Kopi soda rasa mocca non alkohol", price: "22.000" },
+    ]
+  },
+  {
+    title: "Matcha",
+    icon: Leaf,
+    items: [
+      { name: "Hot Matcha", desc: "Teh hijau matcha hangat dengan susu", price: "15.000" },
+      { name: "Matcha Clouds", desc: "Kopi susu matcha dengan foam seasalt", price: "22.000" },
+      { name: "Delight Matcha", desc: "Oatmilk, matcha, vanilla ice cream blend, topping oat", price: "22.000" },
+    ]
+  },
+  {
+    title: "Oatmilk Drink",
+    icon: GlassWater,
+    items: [
+      { name: "Oat Berry Bliss", desc: "Oatmilk + strawberry + vanilla ice cream + oat topping", price: "22.000" },
+      { name: "Oat Peace", desc: "Oatmilk pistachio + vanilla ice cream + oat topping", price: "22.000" },
+    ]
+  },
+  {
+    title: "Juice",
+    icon: GlassWater,
+    items: [
+      { name: "Strawberry Juice", desc: "Jus strawberry segar", price: "15.000" },
+      { name: "Lychee Juice", desc: "Jus leci segar", price: "15.000" },
+      { name: "Mango Juice", desc: "Jus mangga segar", price: "15.000" },
+    ]
+  },
+  {
+    title: "Milk Based Drink",
+    icon: GlassWater,
+    items: [
+      { name: "Ice Choco Berry Milk", desc: "Susu cokelat dingin rasa berry", price: "18.000" },
+      { name: "Ice Chocolate Milk", desc: "Susu cokelat dingin", price: "18.000" },
+      { name: "Ice Pistachio Milk", desc: "Susu dingin dengan sirup pistachio", price: "18.000" },
+      { name: "Ice Matcha Milk", desc: "Matcha dengan susu", price: "18.000" },
+    ]
+  },
+  {
+    title: "Tea",
+    icon: Leaf,
+    items: [
+      { name: "Ice Lemon Tea", desc: "Teh dingin lemon", price: "14.000" },
+      { name: "Ice Thai Tea", desc: "Teh thailand creamy", price: "18.000" },
+      { name: "Ice Jasmine Tea", desc: "Teh aroma melati", price: "12.000" },
+      { name: "Ice Lychee Tea", desc: "Teh dingin rasa leci", price: "18.000" },
+    ]
+  },
+  {
+    title: "Signature Drink",
+    icon: Star,
+    items: [
+      { name: "Loveless", desc: "Delima juice, strawberry pulp, vanilla cream", price: "22.000" },
+      { name: "Field Forever", desc: "Susu, vanilla, strawberry pulp", price: "22.000" },
+    ]
+  },
+  {
+    title: "Burger & Hot Dog",
+    icon: Sandwich,
+    items: [
+      { name: "Cheese Beef Burger", desc: "Beef tebal dengan saus keju", price: "30.000" },
+      { name: "Prime Beef Burger", desc: "Burger klasik beef dan sayur", price: "30.000" },
+      { name: "Balerion Beef Burger", desc: "Beef tebal, onion ring, saus blackpepper", price: "30.000" },
+      { name: "Hot Dog Texas", desc: "Sosis dan beef slice", price: "25.000" },
+    ]
+  },
+  {
+    title: "Rice Bowl",
+    icon: Car,
+    items: [
+      { name: "Chicken Salt Spicy", desc: "Nasi ayam cabai garam", price: "30.000" },
+      { name: "Chicken Curry", desc: "Nasi ayam saus kari", price: "30.000" },
+      { name: "Chicken Blackpepper", desc: "Nasi ayam lada hitam", price: "30.000" },
+      { name: "Chicken Nashville", desc: "Nasi ayam krispi saus pedas", price: "30.000" },
+      { name: "Egg Herb", desc: "Nasi telur orak arik rempah", price: "15.000" },
+    ]
+  },
+  {
+    title: "Snack",
+    icon: Drumstick,
+    items: [
+      { name: "French Fries", desc: "Kentang goreng", price: "20.000" },
+      { name: "Mix Platter", desc: "Aneka camilan goreng", price: "30.000" },
+      { name: "Potato Cheese", desc: "Kentang goreng dengan saus keju", price: "22.000" },
+      { name: "Chicken Wrap", desc: "Tortilla isi chicken katsu", price: "22.000" },
+      { name: "Tofu Beef Salt Pepper", desc: "Tahu goreng dengan beef cincang", price: "20.000" },
+      { name: "Fettuccine Carbonara", desc: "Pasta creamy dengan daging", price: "22.000" },
+      { name: "Mac and Beef With Cheese", desc: "Makaroni saus keju dengan beef", price: "22.000" },
+      { name: "French Brulee Toast", desc: "Roti panggang karamel", price: "18.000" },
+      { name: "Nachos Bolognese", desc: "Nachos saus bolognese + mozzarella", price: "20.000" },
+      { name: "Nashville Beef Toast", desc: "Roti panggang isi beef nashville", price: "20.000" },
+    ]
+  },
+  {
+    title: "Dessert",
+    icon: Cake,
+    items: [
+      { name: "Banoffee", desc: "Pisang karamel dengan whipped cream", price: "18.000" },
+    ]
+  },
+  {
+    title: "Bundling",
+    icon: Gift,
+    items: [
+      { name: "Egg Herb + Es Kopi Susu Pondasi", desc: "Paket combo", price: "30.000" },
+      { name: "Chicken Salt Spicy + Lemon Tea", desc: "Paket combo", price: "30.000" },
+      { name: "Chicken Black Pepper + Lemon Tea", desc: "Paket combo", price: "30.000" },
+      { name: "Chicken Curry + Lemon Tea", desc: "Paket combo", price: "30.000" },
+      { name: "4 Cup Es Kopi Susu Pondasi", desc: "Paket 4 cups", price: "60.000" },
+    ]
+  },
+  {
+    title: "Add On",
+    icon: Plus,
+    items: [
+      { name: "Cheese Slice", desc: "Tambahan", price: "5.000" },
+      { name: "Egg", desc: "Tambahan", price: "5.000" },
+      { name: "Nasi", desc: "Tambahan", price: "5.000" },
+      { name: "Beef Patty", desc: "Tambahan", price: "20.000" },
+      { name: "Oat Milk", desc: "Tambahan", price: "3.000" },
+      { name: "One Shot Espresso", desc: "Tambahan", price: "4.000" },
+    ]
+  },
 ];
 
 const features = [
@@ -66,7 +211,7 @@ export default function Home() {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#c9a66b] to-[#8b6914] flex items-center justify-center shadow-lg shadow-[#c9a66b]/20">
+                <div className="w-11 h-11 rounded-xl bg-linear-to-br from-[#c9a66b] to-[#8b6914] flex items-center justify-center shadow-lg shadow-[#c9a66b]/20">
                   <Coffee className="w-5 h-5 text-[#0d0a08]" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#c9a66b] rounded-full animate-pulse"></div>
@@ -102,7 +247,7 @@ export default function Home() {
                 href="https://wa.me/6285366567799"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative overflow-hidden bg-gradient-to-r from-[#c9a66b] to-[#a88b4a] text-[#0d0a08] px-5 py-2.5 rounded-xl font-lato font-bold text-sm shadow-lg shadow-[#c9a66b]/25 hover:shadow-[#c9a66b]/40 transition-all duration-300"
+                className="group relative overflow-hidden bg-linear-to-r from-[#c9a66b] to-[#a88b4a] text-[#0d0a08] px-5 py-2.5 rounded-xl font-lato font-bold text-sm shadow-lg shadow-[#c9a66b]/25 hover:shadow-[#c9a66b]/40 transition-all duration-300"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -333,54 +478,28 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-10">
-            {/* Coffee Menu */}
-            <div className="bg-[#1a1510] rounded-3xl p-10 border border-[#2a211a] hover:border-[#c9a66b]/50 transition-all group">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#c9a66b] to-[#8b6914] flex items-center justify-center">
-                  <Coffee className="w-8 h-8 text-[#0d0a08]" />
-                </div>
-                <div>
-                  <h3 className="font-playfair text-2xl font-bold text-[#e8dfd4]">Minuman</h3>
-                  <p className="font-lato text-sm text-[#8a7b6a]">Kopi & Non-Kopi</p>
-                </div>
-              </div>
-              <div className="space-y-1">
-                {menuItems.map((item, index) => (
-                  <div key={index} className="flex justify-between items-center py-4 border-b border-[#2a211a]/50 last:border-0 hover:bg-[#2a211a]/30 px-4 -mx-4 rounded-lg transition-all group/item">
-                    <div className="flex items-center gap-3">
-                      <span className={`w-2 h-2 rounded-full ${item.category === 'coffee' ? 'bg-[#c9a66b]' : 'bg-[#8b6914]'}`}></span>
-                      <span className="font-lato text-[#e8dfd4] group-hover/item:text-[#c9a66b] transition-colors">{item.name}</span>
-                    </div>
-                    <span className="font-lato font-bold text-[#c9a66b]">Rp {item.price}</span>
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {menuCategories.map((category, catIndex) => (
+              <div key={catIndex} className="bg-[#1a1510] rounded-3xl p-6 border border-[#2a211a] hover:border-[#c9a66b]/50 transition-all group">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#c9a66b] to-[#8b6914] flex items-center justify-center">
+                    <category.icon className="w-5 h-5 text-[#0d0a08]" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Food Menu */}
-            <div className="bg-[#1a1510] rounded-3xl p-10 border border-[#2a211a] hover:border-[#c9a66b]/50 transition-all group">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#c9a66b] to-[#8b6914] flex items-center justify-center">
-                  <Utensils className="w-8 h-8 text-[#0d0a08]" />
+                  <h3 className="font-playfair text-lg font-bold text-[#e8dfd4]">{category.title}</h3>
                 </div>
-                <div>
-                  <h3 className="font-playfair text-2xl font-bold text-[#e8dfd4]">Makanan</h3>
-                  <p className="font-lato text-sm text-[#8a7b6a]">Snacks & Main Course</p>
-                </div>
-              </div>
-              <div className="space-y-1">
-                {foodItems.map((item, index) => (
-                  <div key={index} className="flex justify-between items-center py-4 border-b border-[#2a211a]/50 last:border-0 hover:bg-[#2a211a]/30 px-4 -mx-4 rounded-lg transition-all group/item">
-                    <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#c9a66b]"></span>
-                      <span className="font-lato text-[#e8dfd4] group-hover/item:text-[#c9a66b] transition-colors">{item.name}</span>
+                <div className="space-y-2">
+                  {category.items.map((item, itemIndex) => (
+                    <div key={itemIndex} className="flex justify-between items-center py-2 border-b border-[#2a211a]/30 last:border-0 hover:bg-[#2a211a]/20 px-2 -mx-2 rounded-lg transition-all group/item">
+                      <div className="flex-1 min-w-0">
+                        <span className="font-lato text-sm text-[#e8dfd4] group-hover/item:text-[#c9a66b] transition-colors block truncate">{item.name}</span>
+                        <span className="font-lato text-xs text-[#8a7b6a] block truncate">{item.desc}</span>
+                      </div>
+                      <span className="font-lato font-bold text-[#c9a66b] text-sm whitespace-nowrap ml-2">Rp {item.price}</span>
                     </div>
-                    <span className="font-lato font-bold text-[#c9a66b]">Rp {item.price}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
 
           <div className="text-center mt-16">
